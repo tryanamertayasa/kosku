@@ -17,18 +17,16 @@
     <div class="page-content page-home">
       <?php
         include("template/_kos-carousel.php");
-      ?>
-     <?php
-        include("template/_kos-location.php")
-     ?>
-     <?php
-        include("template/_kos-newlist.php")
+        include("template/_kos-location.php");
+        include("template/_kos-newlist.php");
      ?>
     </div>
 
-    <?php
+    <footer>
+     <?php
         include("footer.php")
-    ?>
+     ?>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.slim.min.js"></script>
