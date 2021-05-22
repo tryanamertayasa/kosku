@@ -1,9 +1,19 @@
+<?php
+
+  session_start();
+
+  //if(!isset($_SESSION["login"])){
+    //header("Location: login.php");
+    //exit;
+  //}
+  require 'functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
         <?php
             include("header.php");
-            require("functions.php")
         ?>
 
   </head>

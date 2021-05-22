@@ -1,9 +1,22 @@
+<?php 
+  require 'functions.php';
+
+  if(isset($_POST["register"])){
+    if(userRegister($_POST) > 0){
+      echo "<script>
+            alert('Akun Berhasil Dibuat!');
+            window.location.replace('login.php');
+          </script>";
+    } else {
+      //echo mysql_error($db);
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
   <?php
         include("header.php");
-        require("functions.php");
     ?>
   </head>
 
@@ -20,17 +33,18 @@
           <div class="row justify-content-center">
             <div class="col-lg-4">
               <h2>
-                Memulai untuk jual beli <br />
-                dengan cara terbaru
+                Buat akunmu sekarang! <br />
+                Cari kos lebih mudah 
               </h2>
-              <form class="mt-3">
+              <form class="mt-3" method="post">
                 <div class="form-group">
-                  <label>Full Name</label>
+                  <label>Nama</label>
                   <input
                     type="text"
-                    class="form-control is-valid"
+                    class="form-control"
                     aria-describedby="nameHelp"
                     v-model="name"
+                    name="name"
                     autofocus
                   />
                 </div>
@@ -38,69 +52,31 @@
                   <label>Email</label>
                   <input
                     type="email"
-                    class="form-control is-invalid"
+                    class="form-control"
                     aria-describedby="emailHelp"
                     v-model="email"
+                    name="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>No. HP</label>
+                  <input
+                    type="phone"
+                    class="form-control"
+                    aria-describedby="emailHelp"
+                    v-model="email"
+                    name="phone"
                   />
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label>Store</label>
-                  <p class="text-muted">
-                    Apakah anda juga ingin membuka toko?
-                  </p>
-                  <div
-                    class="custom-control custom-radio custom-control-inline"
-                  >
-                    <input
-                      class="custom-control-input"
-                      type="radio"
-                      name="is_store_open"
-                      id="openStoreTrue"
-                      v-model="is_store_open"
-                      :value="true"
-                    />
-                    <label class="custom-control-label" for="openStoreTrue"
-                      >Iya, boleh</label
-                    >
-                  </div>
-                  <div
-                    class="custom-control custom-radio custom-control-inline"
-                  >
-                    <input
-                      class="custom-control-input"
-                      type="radio"
-                      name="is_store_open"
-                      id="openStoreFalse"
-                      v-model="is_store_open"
-                      :value="false"
-                    />
-                    <label
-                      makasih
-                      class="custom-control-label"
-                      for="openStoreFalse"
-                      >Enggak, makasih</label
-                    >
-                  </div>
-                </div>
-                <div class="form-group" v-if="is_store_open">
-                  <label>Nama Toko</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    aria-describedby="storeHelp"
+                  <input 
+                    type="password" 
+                    class="form-control" 
+                    name="password"
                   />
                 </div>
-                <div class="form-group" v-if="is_store_open">
-                  <label>Kategori</label>
-                  <select name="category" class="form-control">
-                    <option value="" disabled>Select Category</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-success btn-block mt-4">
+                <button type="submit" class="btn btn-success btn-block mt-4" name="register">
                   Sign Up Now
                 </button>
                 <button type="submit" class="btn btn-signup btn-block mt-2">
@@ -114,45 +90,18 @@
     </div>
 
     <footer>
-    <?php
+     <?php
         include("footer.php")
      ?>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
     </script>
-    <script src="/vendor/vue/vue.js"></script>
-    <script src="https://unpkg.com/vue-toasted"></script>
-    <script>
-      Vue.use(Toasted);
-
-      var register = new Vue({
-        el: "#register",
-        mounted() {
-          AOS.init();
-          this.$toasted.error(
-            "Maaf, tampaknya email sudah terdaftar pada sistem kami.",
-            {
-              position: "top-center",
-              className: "rounded",
-              duration: 1000,
-            }
-          );
-        },
-        data: {
-          name: "Angga Hazza Sett",
-          email: "kamujagoan@bwa.id",
-          password: "",
-          is_store_open: true,
-          store_name: "",
-        },
-      });
-    </script>
-    <script src="/script/navbar-scroll.js"></script>
+    <script src="script/navbar-scroll.js"></script>
   </body>
 </html>

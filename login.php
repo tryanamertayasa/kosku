@@ -1,10 +1,63 @@
+<?php 
+  session_start();
+
+  if(isset($_SESSION["login"])){
+    header("Location: index.php");
+    exit;
+  }
+  require 'functions.php';
+
+  // cek cookie
+  if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    //ambil username berdasarkan id
+    $result = mysqli_query($db, "SELECT `nama` FROM user WHERE id_user = '$id'");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie dan username
+    if($key === hash('sha256', $row["nama"])){
+      $_SESSION['login'] = true;
+    }
+  }
+
+  if(isset($_SESSION["login"])){
+    header("Location: index.php");
+    exit;
+  }
+
+  if(isset($_POST["login"])){
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($db, "SELECT * FROM `user` WHERE `email` = '$email'");
+
+    // cek username
+    if(mysqli_num_rows($result) === 1){
+      // cek password
+      $row = mysqli_fetch_assoc($result);
+      if(password_verify($password, $row["password"])){
+        // set session
+        $_SESSION["login"] = true;
+        setcookie('id', $row['id_user'], time()+300);
+        setcookie('key', hash('sha256', $row['email']), time()+300);
+
+        header("Location: index.php");
+        exit;
+      }
+    }
+
+    $error = true;
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
   <?php
-        include("header.php");
-        require("functions.php");
-    ?>
+  include("header.php");
+  ?>
   </head>
 
   <body>
@@ -30,26 +83,27 @@
                 Cari kosan, <br />
                jadi lebih mudah
               </h2>
-              <form class="mt-3">
+              <form class="mt-3" method="post">
                 <div class="form-group">
                   <label>Email address</label>
                   <input
                     type="email"
                     class="form-control w-75"
                     aria-describedby="emailHelp"
+                    name="email"
                   />
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control w-75" />
+                  <input type="password" class="form-control w-75" name="password"/>
                 </div>
-                <a
+                <button
                   class="btn btn-success btn-block w-75 mt-4"
-                  href="/login.html"
+                  name="login"
                 >
                   Sign In to My Account
-                </a>
-                <a class="btn btn-signup w-75 mt-2" href="/register.html">
+                </button>
+                <a class="btn btn-signup w-75 mt-2" href="register.php">
                   Sign Up
                 </a>
               </form>
@@ -73,5 +127,33 @@
       AOS.init();
     </script>
     <script src="script/navbar-scroll.js"></script>
+
+    <?php
+ 
+if(isset($_POST["login"]))
+{
+
+	$email = $_POST["email"];
+	$password = $_POST["password"];
+	$ambil = $koneksi->query("SELECT * FROM user WHERE email='$email' AND password='$password'");
+
+	$akunyangcocok = $ambil->num_rows;
+
+	if($akunyangcocok==1)
+	{
+		$akun = $ambil->fetch_assoc();
+		$_SESSION["pelanggan"] = $akun;
+		echo "<script>alert(' Anda sukses login');</script>";
+		echo "<script>location = 'index.php';</script>";
+	}
+	else
+	{
+		echo "<script>alert('Anda gagal login, Periksa akun Anda');</script>";
+		echo "<script>location = 'login.php';</script>";
+	}
+}
+
+?>
+
   </body>
 </html>

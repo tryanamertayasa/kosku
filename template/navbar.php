@@ -1,9 +1,11 @@
+<!-- Navigation -->
 <nav
       class="navbar navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top"
       data-aos="fade-down"
+      aria-label="Navbar"
     >
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="index.php">
           <img src="images/logo.png" alt="" />
         </a>
         <button
@@ -19,23 +21,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home </a>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/categories.html">Lokasi</a>
+              <a class="nav-link" href="templat/_kost-newlist.php">Kos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/register.html">Sign Up</a>
+              <a class="nav-link" href="template/_kos-lokasi.php">Lokasi</a>
             </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-success nav-link px-4 text-white"
-                href="/login.html"
-                >Sign In</a
-              >
-            </li>
+            <?php
+              if(!isset($_SESSION["login"])){
+                include ("template/_navbar-wosession.php");
+              }
+            ?>
           </ul>
+          <?php
+          if(isset($_SESSION["login"])){
+            include ("template/_navbar-session.php");
+          }
+          ?>
         </div>
       </div>
     </nav>
