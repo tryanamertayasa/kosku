@@ -6,7 +6,7 @@
     >
       <div class="container">
         <a class="navbar-brand" href="index.php">
-          <img src="images/logo.png" alt="" />
+          <img src='images/logo.png' alt="" />
         </a>
         <button
           class="navbar-toggler"
@@ -25,20 +25,20 @@
               <a class="nav-link" href="index.php">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="templat/_kost-newlist.php">Kos</a>
+              <a class="nav-link" href="_kost-newlist.php">Kos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="template/_kos-lokasi.php">Lokasi</a>
+              <a class="nav-link" href="_kos-lokasi.php">Lokasi</a>
             </li>
             <?php
               if(!isset($_SESSION["login"])){
-                include ("template/_navbar-wosession.php");
+                include ('_navbar-wosession.php');
               }
             ?>
           </ul>
           <?php
           if(isset($_SESSION["login"])){
-            include ("template/_navbar-session.php");
+            include ('_navbar-session.php');
           }
           ?>
         </div>
