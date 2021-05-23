@@ -23,7 +23,7 @@
   <body>
     <!-- Navigation -->
     <?php
-        include("template/navbar.php")
+        include("template/navbar.php");
     ?>
 
     <!-- Page Content -->

@@ -23,10 +23,7 @@
                 Let’s grow up now.
               </p>
               <div>
-                <a class="btn btn-success w-50 mt-4" href="/dashboard.html">
-                  Dashboard
-                </a>
-                <a class="btn btn-signup w-50 mt-2" href="/index.html">
+                <a class="btn btn-signup w-50 mt-2" href="index.php">
                   Lihat Kos
                 </a>
               </div>
