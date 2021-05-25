@@ -124,4 +124,28 @@
         mysqli_query($db, "DELETE FROM `kos` WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos");
         return mysqli_affected_rows($db);
     }
+
+    function updatePemilikAccount($data){
+        global $db;
+    
+        $id_pemilik_kos = $_COOKIE['id'];
+        $name = htmlspecialchars($data["name"]);
+        $email = htmlspecialchars($data["email"]);
+        $phone = htmlspecialchars($data["no_hp"]);
+        $address = htmlspecialchars($data["address"]);
+        $regencies = htmlspecialchars($data["regencies"]);
+        $zip_code = htmlspecialchars($data["zip_code"]);
+        $birth_date = htmlspecialchars($data["birth_date"]);
+    
+        //cek apakah user pilih gambar baru atau tidak
+        //if ($_FILES['gambar']['error'] === 4) {
+        //    $gambar = $gambarLama;
+        //}else {
+        //    $gambar = upload();
+        //}
+    
+        $query = "UPDATE `pemilik_kos` SET `name`='$name',`email`='$email',`no_hp`='$phone',`address`='$address',`regencies`='$regencies',`zip_code`='$zip_code',`birth_date`='$birth_date' WHERE `id_pemilik_kos`=$id_pemilik_kos";
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }
 ?>
