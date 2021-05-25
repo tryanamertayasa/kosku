@@ -1,22 +1,26 @@
 <?php 
-    session_start();
-    require 'functions.php';
-    // cek tombol submit ditekan
-    if (isset($_POST["submit"])) {
-        // cek data berhasil ditambahkan atau tidak
-        echo 'mantap';
-        if (createKos($_POST) > 0){
-            echo "<script>
-                alert('Data Berhasil Ditambahkan');
-                document.location.href = 'pemilik-iklan.php';
-                </script>";
+require 'functions.php';
 
-        } else {
-            echo "<script>
-                alert('Data Gagal Ditambahkan');
-                </script>";
-        }
-    }
+//ambil data di url
+$id_kos = $_GET["id_kos"];
+$id_pemilik_kos = $_COOKIE['id'];
+
+//query data kos
+$kos = query("SELECT * FROM `kos` WHERE `id_kos`=$id_kos AND  `id_pemilik_kos`=$id_pemilik_kos")[0];
+
+// cek tombol submit ditekan
+if (isset($_POST["submit_update"])) {
+  // cek data berhasil diubah atau tidak
+  if (updateKos($_POST) > 0){
+    echo "<script>
+          alert('Data Kos Berhasil Diubah');
+          document.location.href = 'index.php';
+        </script>";
+
+  } else {
+    echo "Data Kos Gagal Diubah";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +104,7 @@
                                   id="name"
                                   aria-describedby="name"
                                   name="kos_name"
-                                  value=""
+                                  value="<?= $kos["title"] ?>"
                                 />
                               </div>
                             </div>
@@ -113,7 +117,7 @@
                                   id="price"
                                   aria-describedby="price"
                                   name="price"
-                                  value=""
+                                  value="<?= $kos["price"] ?>"
                                 />
                               </div>
                             </div>     
@@ -169,10 +173,10 @@
                         <div class="col">
                           <button
                             type="submit"
-                            name="submit"
+                            name="submit_update"
                             class="btn btn-success btn-block px-5"
                           >
-                            Buat Iklan Kos Mu!
+                            Ubah Iklan
                           </button>
                         </div>
                       </div>

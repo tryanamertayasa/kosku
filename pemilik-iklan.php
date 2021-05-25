@@ -8,7 +8,7 @@
   }
   require 'functions.php';
   $id=$_COOKIE['id'];
-  $kosdata = query("SELECT `title`, `price`, `id_location` FROM kos WHERE `id_pemilik_kos` = '$id'");
+  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM kos WHERE `id_pemilik_kos` = '$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
