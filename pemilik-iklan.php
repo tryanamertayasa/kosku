@@ -38,7 +38,7 @@
             >List Kos</a
           >
           <a
-            href="pemilik-iklan-details.php"
+            href="buat-iklan.php"
             class="list-group-item list-group-item-action"
             >Buat Iklan</a
           >
