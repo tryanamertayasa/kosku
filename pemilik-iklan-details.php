@@ -65,12 +65,10 @@ if (isset($_POST["submit_delete"])) {
             >Buat Iklan</a
           >
           <a
-            href="update-iklan.php"
             class="list-group-item list-group-item-action active"
             >Update Iklan</a
           >
           <a
-            href="hapus-iklan.php"
             class="list-group-item list-group-item-action active"
             >Hapus Iklan</a
           >

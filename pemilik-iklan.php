@@ -38,19 +38,9 @@
             >List Kos</a
           >
           <a
-            href="buat-iklan.php"
+            href="pemilik-iklan-details.php"
             class="list-group-item list-group-item-action"
             >Buat Iklan</a
-          >
-          <a
-            href="update-iklan.php"
-            class="list-group-item list-group-item-action"
-            >Update Iklan</a
-          >
-          <a
-            href="hapus-iklan.php"
-            class="list-group-item list-group-item-action"
-            >Hapus Iklan</a
           >
           <a
             href="pemilik-account.php"
