@@ -14,7 +14,19 @@ if (isset($_POST["submit_update"])) {
   if (updateKos($_POST) > 0){
     echo "<script>
           alert('Data Kos Berhasil Diubah');
-          document.location.href = 'index.php';
+          document.location.href = 'pemilik-iklan.php';
+        </script>";
+
+  } else {
+    echo "Data Kos Gagal Diubah";
+  }
+}
+if (isset($_POST["submit_delete"])) {
+  // cek data berhasil diubah atau tidak
+  if (deleteKos() > 0){
+    echo "<script>
+          alert('Data Kos Berhasil Dihapus');
+          document.location.href = 'pemilik-iklan.php';
         </script>";
 
   } else {
@@ -170,13 +182,22 @@ if (isset($_POST["submit_update"])) {
                         </div>
                       </div>
                       <div class="row mt-2">
-                        <div class="col">
+                        <div class="col-md-6">
                           <button
                             type="submit"
                             name="submit_update"
                             class="btn btn-success btn-block px-5"
                           >
                             Ubah Iklan
+                          </button>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            type="submit"
+                            name="submit_delete"
+                            class="btn btn-danger btn-block px-5"
+                          >
+                            Hapus Iklan
                           </button>
                         </div>
                       </div>

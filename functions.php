@@ -116,4 +116,12 @@
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
+
+    function deleteKos(){
+        global $db;
+        $id_kos = $_GET["id_kos"];
+        $id_pemilik_kos = $_COOKIE['id'];
+        mysqli_query($db, "DELETE FROM `kos` WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos");
+        return mysqli_affected_rows($db);
+    }
 ?>
