@@ -6,7 +6,7 @@
                       <div class="col-12 mt-2">
                         <a
                           class="card card-list d-block"
-                          href="pemilik-iklan-details.php"
+                          href="pemilik-iklan-details.php?id_kos=<?= $row["id_kos"]; ?>"
                         >
                           <div class="card-body">
                             <div class="row">
