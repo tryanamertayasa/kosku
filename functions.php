@@ -77,7 +77,7 @@
         // ambil data tiap element dalam form
     
         //htmlspecialchars digunakan untuk agar tidak langsung menampilkan elemen html
-        $id_pemilik_kos = $id=$_COOKIE['id'];
+        $id_pemilik_kos = $_COOKIE['id'];
         $name = htmlspecialchars($data["kos_name"]);
         $price = htmlspecialchars($data["price"]);
         $location = htmlspecialchars($data["location"]);
@@ -91,6 +91,28 @@
     
         // query insert data
         $query = "INSERT INTO `kos` VALUES ('', '$id_pemilik_kos', '$name', '$price', '$description', '$location')";
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }
+
+    function updateKos($data){
+        global $db;
+    
+        $id_kos = $_GET["id_kos"];
+        $id_pemilik_kos = $_COOKIE['id'];
+        $title = htmlspecialchars($data["kos_name"]);
+        $price = htmlspecialchars($data["price"]);
+        $location = htmlspecialchars($data["location"]);
+        $description = htmlspecialchars($data["description"]);
+    
+        //cek apakah user pilih gambar baru atau tidak
+        //if ($_FILES['gambar']['error'] === 4) {
+        //    $gambar = $gambarLama;
+        //}else {
+        //    $gambar = upload();
+        //}
+    
+        $query = "UPDATE `kos` SET `title`='$title',`price`=$price,`desription`='$description',`id_location`=$location WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos";
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
