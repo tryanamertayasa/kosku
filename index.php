@@ -2,10 +2,10 @@
 
   session_start();
 
-  //if(!isset($_SESSION["login"])){
-    //header("Location: login.php");
-    //exit;
-  //}
+  if(!isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+  }
   require 'functions.php';
 ?>
 
@@ -29,7 +29,7 @@
         include("template/_kos-carousel.php");
         include("template/_kos-location.php");
         include("template/_kos-newlist.php");
-     ?>
+      ?>
     </div>
 
     <footer>
