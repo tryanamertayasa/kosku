@@ -162,4 +162,46 @@
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
+
+    function upload($id_picture){
+        $namaFile = $_FILES['gambar']['name'];
+        $sizeFile = $_FILES['gambar']['size'];
+        $error = $_FILES['gambar']['error'];
+        $tmpFile = $_FILES['gambar']['tmp_name'];
+    
+        //cek apakah tidak ada gambar yg diupload
+        if ($error === 4) {
+            echo "<script>
+                        alert('Masukkan Gambar Terlebih Dahulu!!');
+                  </script>";
+            return false;
+        }
+    
+        //cek apakah yg diupload gambar atau bukan
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+                        alert('Yang Anda Upload bukan Gambar!!');
+                  </script>";
+            return false;
+        }
+    
+        //cek jika ukuran terlalu besar
+        if ($sizeFile > 5000000) {
+            echo "<script>
+                        alert('Ukuran Gambar Terlalu Besar!!');
+                  </script>";
+            return false;
+        }
+    
+        //lolos pengecekan, gambar siap diupload
+        //generate nama gambar baru
+        $namaFileBaru = $id_picture
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+        move_uploaded_file($tmpFile, 'images/kos/' . $namaFileBaru);
+        return $namaFileBaru;
+    }
 ?>
