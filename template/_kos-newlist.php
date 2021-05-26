@@ -6,14 +6,14 @@
             </div>
           </div>
           <div class="row">
+          <?php $i = 1; ?>
+          <?php foreach ($kosdata as $rowkos) : ?>
             <div
               class="col-6 col-md-4 col-lg-3"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-            <?php $i = 1; ?>
-            <?php foreach ($kosdata as $row) : ?>
-              <a class="component-products d-block" href="/details.html">
+              <a class="component-products d-block" href="details.php?id_kos=<?= $rowkos["id_kos"]; ?>">
                 <div class="products-thumbnail">
                   <div
                     class="products-image"
@@ -23,13 +23,15 @@
                   ></div>
                 </div>
                 <div class="products-text">
-                  Kos Pasha
+                  <?php echo $rowkos['title'];?>
                 </div>
                 <div class="products-price">
-                  Rp 800.000
+                  <?php echo $rowkos['price'];?>
                 </div>
               </a>
             </div>
+            <?php $i++; ?>
+          <?php endforeach; ?>
           </div>
         </div>
       </section>

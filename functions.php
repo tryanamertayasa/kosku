@@ -112,7 +112,7 @@
         //    $gambar = upload();
         //}
     
-        $query = "UPDATE `kos` SET `title`='$title',`price`=$price,`desription`='$description',`id_location`=$location WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos";
+        $query = "UPDATE `kos` SET `title`='$title',`price`=$price,`description`='$description',`id_location`=$location WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos";
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }

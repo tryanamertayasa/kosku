@@ -40,8 +40,8 @@
       if(password_verify($password, $row["password"])){
         // set session
         $_SESSION["login"] = true;
-        setcookie('id', $row['id_user'], time()+300);
-        setcookie('key', hash('sha256', $row['email']), time()+300);
+        setcookie('id', $row['id_user'], time()+3000);
+        setcookie('key', hash('sha256', $row['email']), time()+3000);
 
         header("Location: index.php");
         exit;

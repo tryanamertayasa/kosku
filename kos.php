@@ -27,8 +27,6 @@
     <!-- Page Content -->
     <div class="page-content page-home">
       <?php
-        include("template/_kos-carousel.php");
-        include("template/_kos-location.php");
         include("template/_kos-newlist.php");
       ?>
     </div>
