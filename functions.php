@@ -154,4 +154,12 @@
         mysqli_query($db, "DELETE FROM `wishlist` WHERE `id_user`=$id_user AND `id_wishlist`=$id_wishlist");
         return mysqli_affected_rows($db);
     }
+
+    function createWishlist($id_kos){
+        global $db;
+        $id_user = $_COOKIE['id'];
+        $query = "INSERT INTO `wishlist` VALUES ('', '$id_user', '$id_kos')";
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }
 ?>

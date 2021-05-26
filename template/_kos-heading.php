@@ -9,8 +9,8 @@
               <div class="col-lg-2" data-aos="zoom-in">
                 <a
                   class="btn btn-success nav-link px-4 text-white btn-block mb-3"
-                  href="/cart.html" 
-                  >Add to Wishlist</a
+                  href="create-wishlist.php?id_kos=<?= $kosdetails["id_kos"]; ?>" 
+                  >Tambah ke Wishlist</a
                 >
                 <a
                   class="btn btn-success nav-link px-4 text-white btn-block mb-3"

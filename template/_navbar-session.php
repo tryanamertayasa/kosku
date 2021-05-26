@@ -30,7 +30,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link d-inline-block mt-2" href="#">
-                <img src="/images/icon-cart-filled.svg" alt="" />
+                <img src="images/icon-cart-filled.svg" alt="" />
                 <div class="cart-badge">3</div>
               </a>
             </li>
