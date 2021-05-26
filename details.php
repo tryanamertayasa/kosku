@@ -1,9 +1,19 @@
+<?php
+  $id_kos=$_GET["id_kos"];
+  session_start();
+  ;
+  if(!isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+  }
+  require 'functions.php';
+  $kosdetails = query("SELECT * FROM `kos` WHERE `id_kos`=$id_kos")[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php
-        include("header.php");
-        require("functions.php");
+      include("header.php");
     ?>
   </head>
 
@@ -24,10 +34,7 @@
         <?php
             include("template/_kos-heading.php");
             include("template/_kos-description.php");
-            include("template/_kos-review.php");
         ?>
-        
-        
       </div>
     </div>
 

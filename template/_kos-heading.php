@@ -3,8 +3,8 @@
             <div class="row">
               <div class="col-lg-8">
                 <h1>Kos Pasha</h1>
-                <div class="owner">Pemilik Pasha Renaisan</div>
-                <div class="price">Rp 800.000</div>
+                <div class="owner">Pemilik Pasha enaisan</div>
+                <div class="price"><?php echo $kosdetails['price'];?></div>
               </div>
               <div class="col-lg-2" data-aos="zoom-in">
                 <a
