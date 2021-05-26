@@ -148,4 +148,10 @@
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
+    function deleteWishlist($id_wishlist){
+        global $db;
+        $id_user = $_COOKIE['id'];
+        mysqli_query($db, "DELETE FROM `wishlist` WHERE `id_user`=$id_user AND `id_wishlist`=$id_wishlist");
+        return mysqli_affected_rows($db);
+    }
 ?>
