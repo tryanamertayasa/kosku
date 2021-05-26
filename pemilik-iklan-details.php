@@ -3,7 +3,7 @@ require 'functions.php';
 
 //ambil data di url
 $id_kos = $_GET["id_kos"];
-$id_pemilik_kos = $_COOKIE['id'];
+$id_pemilik_kos = $_COOKIE['id_pemilik'];
 
 //query data kos
 $kos = query("SELECT * FROM `kos` WHERE `id_kos`=$id_kos AND  `id_pemilik_kos`=$id_pemilik_kos")[0];

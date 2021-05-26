@@ -8,8 +8,8 @@
   require 'functions.php';
 
   // cek cookie
-  if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
-    $id = $_COOKIE['id'];
+  if(isset($_COOKIE['id_pemilik']) && isset($_COOKIE['key'])){
+    $id = $_COOKIE['id_pemilik'];
     $key = $_COOKIE['key'];
 
     //ambil username berdasarkan id
@@ -40,7 +40,7 @@
       if(password_verify($password, $row["password"])){
         // set session
         $_SESSION["login"] = true;
-        setcookie('id', $row['id_pemilik_kos'], time()+3000);
+        setcookie('id_pemilik', $row['id_pemilik_kos'], time()+3000);
         setcookie('key', hash('sha256', $row['email']), time()+3000);
         header('Location: pemilik-dashboard.php');
         exit;

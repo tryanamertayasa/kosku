@@ -25,7 +25,7 @@
               <a class="nav-link" href="index.php">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="_kost-newlist.php">Kos</a>
+              <a class="nav-link" href="kos.php">Kos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="_kos-lokasi.php">Lokasi</a>

@@ -40,7 +40,7 @@
                     />
                     <?php
                     $db = mysqli_connect("localhost", "root", "", "kosku");
-                    $id=$_COOKIE['id'];
+                    $id=$_COOKIE['id_pemilik'];
                     $result = mysqli_query($db, "SELECT `name` FROM `pemilik_kos` WHERE `id_pemilik_kos` = '$id'");
                     $row = mysqli_fetch_assoc($result);
                     echo $row["name"];
@@ -65,7 +65,7 @@
                   <a class="nav-link" href="#">
                   <?php
                     $db = mysqli_connect("localhost", "root", "", "kosku");
-                    $id=$_COOKIE['id'];
+                    $id=$_COOKIE['id_pemilik'];
                     $result = mysqli_query($db, "SELECT `name` FROM `pemilik_kos` WHERE `id_pemilik_kos` = '$id'");
                     $row = mysqli_fetch_assoc($result);
                     echo $row["name"];

@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $id=$_COOKIE['id'];
+  $id=$_COOKIE['id_pemilik'];
   $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM kos WHERE `id_pemilik_kos` = '$id'");
 ?>
 <!DOCTYPE html>

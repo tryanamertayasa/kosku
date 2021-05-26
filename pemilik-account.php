@@ -2,7 +2,7 @@
 require 'functions.php';
 
 //ambil data di url
-$id_pemilik_kos = $_COOKIE['id'];
+$id_pemilik_kos = $_COOKIE['id_pemilik'];
 
 //query data kos
 $pemilik = query("SELECT * FROM `pemilik_kos` WHERE `id_pemilik_kos`=$id_pemilik_kos")[0];
