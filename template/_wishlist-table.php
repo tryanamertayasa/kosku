@@ -10,7 +10,9 @@
                     <th scope="col">Menu</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody method="post">
+                  <?php $i = 1; ?>
+                  <?php foreach ($koswishlist as $row) : ?>
                   <tr>
                     <td style="width: 25%;">
                       <img
@@ -20,18 +22,20 @@
                       />
                     </td>
                     <td style="width: 35%;">
-                      <div class="product-title">Sofa Ternyaman</div>
-                      <div class="product-subtitle">by Andi Sukka</div>
+                      <div class="product-title"><?php echo $row['id_kos'];?></div>
+                      <div class="product-subtitle"><?php echo $row['id_kos'];?></div>
                     </td>
                     <td style="width: 35%;">
-                      <div class="product-title">$29,112</div>
-                      <div class="product-subtitle">USD</div>
+                      <div class="product-title"><?php echo $row['id_kos'];?></div>
+                      <div class="product-subtitle">Rupiah</div>
                     </td>
                     <td style="width: 20%;">
-                      <a href="#" class="btn btn-remove-cart">
+                      <a href="delete-wishlist.php?id_wishlist=<?= $row["id_wishlist"]; ?>" class="btn btn-remove-cart">
                         Remove
                       </a>
                     </td>
                   </tr>
+                  <?php $i++; ?>
+                  <?php endforeach; ?>
                 </tbody>
               </table>

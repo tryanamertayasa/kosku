@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM `kos`");
+  $koswishlist = query("SELECT * FROM `wishlist`");
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +49,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
