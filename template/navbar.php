@@ -28,7 +28,7 @@
               <a class="nav-link" href="kos.php">Kos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="_kos-lokasi.php">Lokasi</a>
+              <a class="nav-link" href="kos-mahasiswa.php">Mahasiswa</a>
             </li>
             <?php
               if(!isset($_SESSION["login"])){

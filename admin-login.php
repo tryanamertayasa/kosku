@@ -40,8 +40,8 @@
       if(password_verify($password, $row["password"])){
         // set session
         $_SESSION["login"] = true;
-        setcookie('id_admin', $row['id_admin'], time()+3000);
-        setcookie('key', hash('sha256', $row['email']), time()+3000);
+        setcookie('id_admin', $row['id_admin'], time()+30000);
+        setcookie('key', hash('sha256', $row['email']), time()+30000);
         header('Location: admin-dashboard.php');
         exit;
       }

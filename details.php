@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdetails = query("SELECT `id_kos`, `name`, `title`, `price`, `description`, `id_location`, `no_hp` FROM `kos` INNER JOIN `pemilik_kos` USING (`id_pemilik_kos`) WHERE `id_kos`=$id_kos")[0];
+  $kosdetails = query("SELECT `id_kos`, `name`, `title`, `price`, (`price`*12) AS `yearly_price`, `description`, `id_location`, `no_hp` FROM `kos` INNER JOIN `pemilik_kos` USING (`id_pemilik_kos`) WHERE `id_kos`=$id_kos")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">

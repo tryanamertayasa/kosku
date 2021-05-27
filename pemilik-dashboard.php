@@ -1,11 +1,12 @@
 <?php
-
+  require 'functions.php';
   session_start();
-
+  $id_pemilik_kos = $_COOKIE['id_pemilik'];
   if(!isset($_SESSION["login"])){
     header("Location: pemilik-login.php");
     exit;
   }
+  $dashboard = query("SELECT COUNT(k.id_kos) AS jumlah_kos, MAX(k.price) AS max_price, MIN(k.price) AS min_price FROM `kos` AS k INNER JOIN `pemilik_kos` AS pk USING (id_pemilik_kos) GROUP BY id_pemilik_kos HAVING id_pemilik_kos=$id_pemilik_kos")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +75,7 @@
                           Jumlah Kos
                         </div>
                         <div class="dashboard-card-subtitle">
-                          4
+                        <?= $dashboard["jumlah_kos"] ?>
                         </div>
                       </div>
                     </div>
@@ -86,7 +87,7 @@
                           Harga Kos Termurah
                         </div>
                         <div class="dashboard-card-subtitle">
-                          Rp 600.000
+                        <?= $dashboard["min_price"] ?>
                         </div>
                       </div>
                     </div>
@@ -95,10 +96,10 @@
                     <div class="card mb-2">
                       <div class="card-body">
                         <div class="dashboard-card-title">
-                          Harga Kos Termurah
+                          Harga Kos Termahal
                         </div>
                         <div class="dashboard-card-subtitle">
-                          Rp 1.000.000
+                        <?= $dashboard["max_price"] ?>
                         </div>
                       </div>
                     </div>

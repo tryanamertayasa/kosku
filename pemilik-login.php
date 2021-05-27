@@ -31,7 +31,7 @@
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($db, "SELECT * FROM `pemilik_kos` WHERE `email` = '$email'");
+    $result = mysqli_query($db, "CALL pemilik_login('$email')");
 
     // cek username
     if(mysqli_num_rows($result) === 1){
@@ -40,8 +40,8 @@
       if(password_verify($password, $row["password"])){
         // set session
         $_SESSION["login"] = true;
-        setcookie('id_pemilik', $row['id_pemilik_kos'], time()+3000);
-        setcookie('key', hash('sha256', $row['email']), time()+3000);
+        setcookie('id_pemilik', $row['id_pemilik_kos'], time()+30000);
+        setcookie('key', hash('sha256', $row['email']), time()+30000);
         header('Location: pemilik-dashboard.php');
         exit;
       }
@@ -102,7 +102,7 @@
                 >
                   Sign In to My Account
                 </button>
-                <a class="btn btn-signup w-75 mt-2" href="register.php">
+                <a class="btn btn-signup w-75 mt-2" href="pemilik-register.php">
                   Sign Up
                 </a>
               </form>

@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdata = query("SELECT * FROM index_query");
+  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`) WHERE `price` BETWEEN 500000 AND 800000 GROUP BY `id_kos`");
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
         ?>
 
   </head>
-  <body>
+  <body>    
     <!-- Navigation -->
     <?php
         include("template/navbar.php");
@@ -27,8 +27,6 @@
     <!-- Page Content -->
     <div class="page-content page-home">
       <?php
-        include("template/_kos-carousel.php");
-        include("template/_kos-location.php");
         include("template/_kos-newlist.php");
       ?>
     </div>

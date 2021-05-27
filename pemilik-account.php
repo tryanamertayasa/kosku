@@ -1,6 +1,6 @@
 <?php 
 require 'functions.php';
-
+session_start();
 //ambil data di url
 $id_pemilik_kos = $_COOKIE['id_pemilik'];
 

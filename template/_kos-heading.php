@@ -4,7 +4,9 @@
               <div class="col-lg-8">
                 <h1><?php echo $kosdetails['title'];?></h1>
                 <div class="owner">Pemilik <?php echo $kosdetails['name'];?></div>
-                <div class="price"><?php echo $kosdetails['price'];?></div>
+                <div class="price">Harga Per Bulan: Rp <?php echo $kosdetails['price'];?></div>
+                <div class="price">Harga Per Tahun: Rp <?php echo $kosdetails['yearly_price'];?></div>
+                
               </div>
               <div class="col-lg-2" data-aos="zoom-in">
                 <a

@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $userlist = query("SELECT * FROM `user`");
+  $userlist = query("SELECT `nama`, `email` FROM `user` UNION SELECT `name`, `email` FROM `pemilik_kos`");
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +34,12 @@
           >
           <a
             href="admin-alllist.php"
-            class="list-group-item list-group-item-action"
+            class="list-group-item list-group-item-action active"
             >Semua List</a
           >
           <a
             href="admin-userlist.php"
-            class="list-group-item list-group-item-action active"
+            class="list-group-item list-group-item-action"
             >User List</a
           >
           <a
@@ -67,7 +67,7 @@
                   List User di situs KOSKU!
                 </p>
               </div>
-              <?php include ("template/_userlist-table.php");?>
+              <?php include ("template/_alllist-table.php");?>
               </div>
             </div>
           </div>

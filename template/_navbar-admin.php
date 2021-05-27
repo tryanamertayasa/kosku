@@ -47,16 +47,8 @@
                   ?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.php"
-                      >Home</a
-                    >>
                     <a class="dropdown-item" href="admin-logout.php">Logout</a>
                   </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-inline-block mt-2" href="#">
-                    <img src="images/icon-cart-empty.svg" alt="" />
-                  </a>
                 </li>
               </ul>
               <!-- Mobile Menu -->

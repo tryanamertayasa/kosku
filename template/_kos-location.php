@@ -5,7 +5,7 @@
   }
   else{
     $id_location = $_GET["id_location"];
-    $koslocation = query("SELECT * FROM `location` WHERE `id_location`=$id_location");
+    $koslocation = query("SELECT * FROM `location` WHERE `id_location`IN($id_location)");
   } 
 ?>
 <section class="store-trend-categories">

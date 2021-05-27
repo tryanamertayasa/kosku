@@ -7,7 +7,11 @@
     exit;
   }
   require 'functions.php';
-  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM `kos`");
+  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`) GROUP BY `id_kos`");
+
+  if (isset($_POST["search"])) {
+    $kosdata = cari($_POST["keyword"]);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +31,7 @@
     <!-- Page Content -->
     <div class="page-content page-home">
       <?php
-        include("template/_kos-newlist.php");
+        include("template/_kos-searchlist.php");
       ?>
     </div>
 

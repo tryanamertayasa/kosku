@@ -33,6 +33,11 @@
             >Dashboard</a
           >
           <a
+            href="admin-alllist.php"
+            class="list-group-item list-group-item-action"
+            >Semua List</a
+          >
+          <a
             href="admin-userlist.php"
             class="list-group-item list-group-item-action"
             >User List</a
