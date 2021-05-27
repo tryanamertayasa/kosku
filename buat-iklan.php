@@ -113,12 +113,12 @@
                                     <option value="1">Badung</option>
                                     <option value="2">Bangli</option>
                                     <option value="3">Buleleng</option>
-                                    <option value="4">Gianyar</option>
-                                    <option value="5">Jembrana</option>
-                                    <option value="6">Karangasem</option>
-                                    <option value="7">Klungkung</option>
-                                    <option value="8">Tabanan</option>
-                                    <option value="9">Denpasar</option>
+                                    <option value="4">Denpasar</option>
+                                    <option value="5">Gianyar</option>
+                                    <option value="6">Jembrana</option>
+                                    <option value="7">Karangasem</option>
+                                    <option value="8">Klungkung</option>
+                                    <option value="9">Tabanan</option>
                                 </select>
                                 </div>
                             </div>

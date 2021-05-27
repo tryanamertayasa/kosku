@@ -26,7 +26,7 @@
               <a class="component-categories d-block" href="location.php?id_location=<?= $row["id_location"]; ?>">
                 <div class="categories-image">
                   <img
-                    src="images/categories-gadgets.svg"
+                    src="images/location.svg"
                     alt="Kos Location"
                     class="w-100"
                   />
