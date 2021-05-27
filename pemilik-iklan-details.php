@@ -101,7 +101,7 @@ if (isset($_POST["submit_delete"])) {
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
@@ -169,7 +169,7 @@ if (isset($_POST["submit_delete"])) {
                                   class="form-control pt-1"
                                   id="thumbnails"
                                   aria-describedby="thumbnails"
-                                  name="pictures"
+                                  name="gambar[]"
                                 />
                                 <small class="text-muted">
                                   Kamu dapat memilih lebih dari satu file

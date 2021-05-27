@@ -7,7 +7,7 @@
         if (createKos($_POST) > 0){
           echo "<script>
               alert('Data Berhasil Ditambahkan');
-              
+              document.location.href = 'pemilik-iklan.php';
               </script>";
 
       } else {
@@ -137,33 +137,9 @@
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <label for="gambar">Upload Foto Kos 1</label>
+                                <label for="gambar">Upload Foto Kos</label>
                                 <input
-                                type="file" class="form-control" name="gambar1"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <label for="gambar">Upload Foto Kos 2</label>
-                                <input
-                                type="file" class="form-control" name="gambar2"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <label for="gambar">Upload Foto Kos 3</label>
-                                <input
-                                type="file" class="form-control" name="gambar3"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <label for="gambar">Upload Foto Kos 4</label>
-                                <input
-                                type="file" class="form-control" name="gambar4"
+                                type="file" multiple class="form-control" name="gambar[]"
                                 />
                               </div>
                             </div>

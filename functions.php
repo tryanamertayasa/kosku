@@ -84,25 +84,27 @@
         $price = htmlspecialchars($data["price"]);
         $location = htmlspecialchars($data["location"]);
         $description = htmlspecialchars($data["description"]);
-    
-        //upload gambar
-        $gambar = upload();
-        if (!$gambar) {
-            return false;
-        }
-    
+
         // query insert data
         $query1 = "INSERT INTO `kos` VALUES ('', '$id_pemilik_kos', '$name', '$price', '$description', '$location')";
         mysqli_query($db, $query1);
         $cariid = query("SELECT `id_kos` FROM kos WHERE `id_pemilik_kos` = '$id_pemilik_kos' ORDER BY `id_kos` DESC")[0];
         $id_kos = $cariid['id_kos'];
-        $query2 = "INSERT INTO `kos_galleries` VALUES ('', $id_kos, '$gambar')";
+        //upload gambar
+        $gambar = upload($id_kos);
+        if (!$gambar) {
+            return false;
+        }
+        $gambar = trim($gambar, ',');
+        echo $gambar;
+        $query2 = "INSERT INTO `kos_galleries` (`id_kos`, `picture`) VALUES $gambar";
         mysqli_query($db1, $query2);
-        return mysqli_affected_rows($db);
+        return mysqli_affected_rows($db1);
     }
 
     function updateKos($data){
         global $db;
+        global $db1;
     
         $id_kos = $_GET["id_kos"];
         $id_pemilik_kos = $_COOKIE['id_pemilik'];
@@ -111,15 +113,17 @@
         $location = htmlspecialchars($data["location"]);
         $description = htmlspecialchars($data["description"]);
     
-        //cek apakah user pilih gambar baru atau tidak
-        //if ($_FILES['gambar']['error'] === 4) {
-        //    $gambar = $gambarLama;
-        //}else {
-        //    $gambar = upload();
-        //}
+        //cek apakah user pilih gambar
+        $gambar = upload($id_kos);
+        if (!$gambar) {
+            return false;
+        }
+        $gambar = trim($gambar, ',');
     
         $query = "UPDATE `kos` SET `title`='$title',`price`=$price,`description`='$description',`id_location`=$location WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos";
         mysqli_query($db, $query);
+        $query2 = "INSERT INTO `kos_galleries` (`id_kos`, `picture`) VALUES $gambar";
+        mysqli_query($db1, $query2);
         return mysqli_affected_rows($db);
     }
 
@@ -143,13 +147,6 @@
         $zip_code = htmlspecialchars($data["zip_code"]);
         $birth_date = htmlspecialchars($data["birth_date"]);
     
-        //cek apakah user pilih gambar baru atau tidak
-        //if ($_FILES['gambar']['error'] === 4) {
-        //    $gambar = $gambarLama;
-        //}else {
-        //    $gambar = upload();
-        //}
-    
         $query = "UPDATE `pemilik_kos` SET `name`='$name',`email`='$email',`no_hp`='$phone',`address`='$address',`regencies`='$regencies',`zip_code`='$zip_code',`birth_date`='$birth_date' WHERE `id_pemilik_kos`=$id_pemilik_kos";
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
@@ -169,46 +166,40 @@
         return mysqli_affected_rows($db);
     }
 
-    function upload(){
-        $fileNames = array_filter($_FILES['gambar']['name']); 
-        $namaFile = $_FILES['gambar']['name'];
-        $sizeFile = $_FILES['gambar']['size'];
-        $error = $_FILES['gambar']['error'];
-        $tmpFile = $_FILES['gambar']['tmp_name'];
-    
-        //cek apakah tidak ada gambar yg diupload
-        if ($error === 4) {
-            echo "<script>
-                        alert('Masukkan Gambar Terlebih Dahulu!!');
-                  </script>";
-            return false;
+    function upload($id_kos){
+        $gambar="";
+        //$arrayGambar = array_filter($_FILES['gambar']['name']);
+        foreach($_FILES['gambar']['name'] as $key=>$val){
+            $namaFile = $_FILES['gambar']['name'][$key];
+            $sizeFile = $_FILES['gambar']['size'][$key];
+            $error = $_FILES['gambar']['error'][$key];
+            $tmpFile = $_FILES['gambar']['tmp_name'][$key];
+            
+            // Check whether file type is valid 
+            $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+            $ekstensiGambar = explode('.', $namaFile);
+            $ekstensiGambar = strtolower(end($ekstensiGambar));
+            if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+                echo "<script>
+                            alert('Yang Anda Upload bukan Gambar!!');
+                    </script>";
+                return false;
+            }
+        
+            //cek jika ukuran terlalu besar
+            if ($sizeFile > 5000000) {
+                echo "<script>
+                            alert('Ukuran Gambar Terlalu Besar!!');
+                    </script>";
+                return false;
+            }
+            
+            $namaFileBaru = uniqid();
+            $namaFileBaru .= '.';
+            $namaFileBaru .= $ekstensiGambar;
+            move_uploaded_file($tmpFile, 'images/kos/' . $namaFileBaru);
+            $gambar .= "($id_kos,'".$namaFileBaru."'),"; 
         }
-    
-        //cek apakah yg diupload gambar atau bukan
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            echo "<script>
-                        alert('Yang Anda Upload bukan Gambar!!');
-                  </script>";
-            return false;
-        }
-    
-        //cek jika ukuran terlalu besar
-        if ($sizeFile > 5000000) {
-            echo "<script>
-                        alert('Ukuran Gambar Terlalu Besar!!');
-                  </script>";
-            return false;
-        }
-    
-        //lolos pengecekan, gambar siap diupload
-        //generate nama gambar baru
-        $namaFileBaru = uniqid();
-        $namaFileBaru .= '.';
-        $namaFileBaru .= $ekstensiGambar;
-        move_uploaded_file($tmpFile, 'images/kos/' . $namaFileBaru);
-        return $namaFileBaru;
+        return $gambar; 
     }
 ?>
