@@ -1,6 +1,7 @@
 <?php
 
     $db = mysqli_connect("localhost", "root", "", "kosku");
+    $db1 = mysqli_connect("localhost", "root", "", "kosku");
 
     function query($query){
         global $db;
@@ -74,24 +75,29 @@
 
     function createKos($data){
         global $db;
+        global $db1;
         // ambil data tiap element dalam form
     
         //htmlspecialchars digunakan untuk agar tidak langsung menampilkan elemen html
-        $id_pemilik_kos = $_COOKIE['id'];
+        $id_pemilik_kos = $_COOKIE['id_pemilik'];
         $name = htmlspecialchars($data["kos_name"]);
         $price = htmlspecialchars($data["price"]);
         $location = htmlspecialchars($data["location"]);
         $description = htmlspecialchars($data["description"]);
     
         //upload gambar
-        //$gambar = upload();
-        //if (!$gambar) {
-        //    return false;
-        //}
+        $gambar = upload();
+        if (!$gambar) {
+            return false;
+        }
     
         // query insert data
-        $query = "INSERT INTO `kos` VALUES ('', '$id_pemilik_kos', '$name', '$price', '$description', '$location')";
-        mysqli_query($db, $query);
+        $query1 = "INSERT INTO `kos` VALUES ('', '$id_pemilik_kos', '$name', '$price', '$description', '$location')";
+        mysqli_query($db, $query1);
+        $cariid = query("SELECT `id_kos` FROM kos WHERE `id_pemilik_kos` = '$id_pemilik_kos' ORDER BY `id_kos` DESC")[0];
+        $id_kos = $cariid['id_kos'];
+        $query2 = "INSERT INTO `kos_galleries` VALUES ('', $id_kos, '$gambar')";
+        mysqli_query($db1, $query2);
         return mysqli_affected_rows($db);
     }
 
@@ -99,7 +105,7 @@
         global $db;
     
         $id_kos = $_GET["id_kos"];
-        $id_pemilik_kos = $_COOKIE['id'];
+        $id_pemilik_kos = $_COOKIE['id_pemilik'];
         $title = htmlspecialchars($data["kos_name"]);
         $price = htmlspecialchars($data["price"]);
         $location = htmlspecialchars($data["location"]);
@@ -120,7 +126,7 @@
     function deleteKos(){
         global $db;
         $id_kos = $_GET["id_kos"];
-        $id_pemilik_kos = $_COOKIE['id'];
+        $id_pemilik_kos = $_COOKIE['id_pemilik'];
         mysqli_query($db, "DELETE FROM `kos` WHERE `id_kos`=$id_kos AND `id_pemilik_kos`=$id_pemilik_kos");
         return mysqli_affected_rows($db);
     }
@@ -128,7 +134,7 @@
     function updatePemilikAccount($data){
         global $db;
     
-        $id_pemilik_kos = $_COOKIE['id'];
+        $id_pemilik_kos = $_COOKIE['id_pemilik'];
         $name = htmlspecialchars($data["name"]);
         $email = htmlspecialchars($data["email"]);
         $phone = htmlspecialchars($data["no_hp"]);
@@ -163,7 +169,8 @@
         return mysqli_affected_rows($db);
     }
 
-    function upload($id_picture){
+    function upload(){
+        $fileNames = array_filter($_FILES['gambar']['name']); 
         $namaFile = $_FILES['gambar']['name'];
         $sizeFile = $_FILES['gambar']['size'];
         $error = $_FILES['gambar']['error'];
@@ -198,7 +205,7 @@
     
         //lolos pengecekan, gambar siap diupload
         //generate nama gambar baru
-        $namaFileBaru = $id_picture
+        $namaFileBaru = uniqid();
         $namaFileBaru .= '.';
         $namaFileBaru .= $ekstensiGambar;
         move_uploaded_file($tmpFile, 'images/kos/' . $namaFileBaru);

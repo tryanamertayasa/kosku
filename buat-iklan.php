@@ -4,18 +4,17 @@
     // cek tombol submit ditekan
     if (isset($_POST["submit"])) {
         // cek data berhasil ditambahkan atau tidak
-        echo 'mantap';
         if (createKos($_POST) > 0){
-            echo "<script>
-                alert('Data Berhasil Ditambahkan');
-                document.location.href = 'pemilik-iklan.php';
-                </script>";
+          echo "<script>
+              alert('Data Berhasil Ditambahkan');
+              
+              </script>";
 
-        } else {
-            echo "<script>
-                alert('Data Gagal Ditambahkan');
-                </script>";
-        }
+      } else {
+          echo "<script>
+              alert('Data Gagal Ditambahkan');
+              </script>";
+      }
     }
 ?>
 <!DOCTYPE html>
@@ -77,7 +76,7 @@
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
@@ -136,20 +135,36 @@
                                 </textarea>
                               </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                               <div class="form-group">
-                                <label for="thumbnails">Upload Foto Kos Mu</label>
+                                <label for="gambar">Upload Foto Kos 1</label>
                                 <input
-                                  type="file"
-                                  multiple
-                                  class="form-control pt-1"
-                                  id="thumbnails"
-                                  aria-describedby="thumbnails"
-                                  name="pictures"
+                                type="file" class="form-control" name="gambar1"
                                 />
-                                <small class="text-muted">
-                                  Kamu dapat memilih lebih dari satu file
-                                </small>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="gambar">Upload Foto Kos 2</label>
+                                <input
+                                type="file" class="form-control" name="gambar2"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="gambar">Upload Foto Kos 3</label>
+                                <input
+                                type="file" class="form-control" name="gambar3"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="gambar">Upload Foto Kos 4</label>
+                                <input
+                                type="file" class="form-control" name="gambar4"
+                                />
                               </div>
                             </div>
                           </div>
