@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM `kos`");
+  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`) GROUP BY `id_kos`");
 ?>
 
 <!DOCTYPE html>

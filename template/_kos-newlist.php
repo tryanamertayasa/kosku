@@ -18,7 +18,7 @@
                   <div
                     class="products-image"
                     style="
-                      background-image: url('images/kos1.jpeg');
+                      background-image: url('images/kos/<?php echo $rowkos['picture'];?>');
                     "
                   ></div>
                 </div>

@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdetails = query("SELECT * FROM `kos` WHERE `id_kos`=$id_kos")[0];
+  $kosdetails = query("SELECT `id_kos`, `name`, `title`, `price`, `description`, `id_location`, `no_hp` FROM `kos` INNER JOIN `pemilik_kos` USING (`id_pemilik_kos`) WHERE `id_kos`=$id_kos")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,12 +34,13 @@
         <?php
             include("template/_kos-heading.php");
             include("template/_kos-description.php");
-        ?>
+        ?>              
       </div>
     </div>
 
     <footer>
     <?php
+    
         include("footer.php")
      ?>
     </footer>
@@ -59,24 +60,18 @@
           AOS.init();
         },
         data: {
-          activePhoto: 3,
+          activePhoto: 0,
           photos: [
+            <?php $kosimages = query("SELECT `picture` FROM `kos_galleries` WHERE `id_kos`=$id_kos");?>
+            <?php $i = 1; ?>
+            <?php foreach ($kosimages as $rowimages) : ?>
             {
-              id: 1,
-              url: "images/kos1.jpeg",
+              id: <?php echo $i;?>,
+              url: "images/kos/<?php echo $rowimages['picture'];?>",
             },
-            {
-              id: 2,
-              url: "images/kos2.jpeg",
-            },
-            {
-              id: 3,
-              url: "images/kos3.jpeg",
-            },
-            {
-              id: 4,
-              url: "images/kos4.jpeg",
-            },
+          <?php $i++; ?>
+            <?php endforeach; ?>
+            
           ],
         },
         methods: {

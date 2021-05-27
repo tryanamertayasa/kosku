@@ -29,9 +29,9 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-inline-block mt-2" href="#">
-                <img src="images/icon-cart-filled.svg" alt="" />
-                <div class="cart-badge">3</div>
+              <a class="nav-link d-inline-block mt-2" href="wishlist.php">
+                <img src="images/wishlist.svg" alt="" />
+                <div class="cart-badge"></div>
               </a>
             </li>
           </ul>

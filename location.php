@@ -27,7 +27,7 @@
     <div class="page-content page-home">
       <?php
         include("template/_kos-location.php");
-        $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location` FROM `kos` WHERE `id_location`=$id_location");
+        $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`) INNER JOIN `location` USING (`id_location`) WHERE `id_location`=$id_location GROUP BY (`id_kos`) ");
         include("template/_kos-newlist.php");
       ?>
     </div>
