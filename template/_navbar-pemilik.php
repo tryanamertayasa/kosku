@@ -34,7 +34,7 @@
                     aria-expanded="false"
                   >
                     <img
-                      src="images/icon-user.png"
+                      src=""
                       alt=""
                       class="rounded-circle mr-2 profile-picture"
                     />

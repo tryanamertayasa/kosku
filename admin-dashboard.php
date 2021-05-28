@@ -7,7 +7,7 @@
     exit;
   }
   include 'functions.php';
-  $dashboard = query("SELECT COUNT(k.id_kos) AS jumlah_kos, MAX(k.price) AS max_price, MIN(k.price) AS min_price FROM `kos` AS k INNER JOIN `pemilik_kos` AS pk USING (id_pemilik_kos)")[0];
+  $dashboard = query("SELECT COUNT(k.id_kos) AS jumlah_kos, COALESCE(MAX(k.price), 0) AS max_price, COALESCE(MIN(k.price), 0) AS min_price FROM `kos` AS k RIGHT JOIN `pemilik_kos` AS pk USING (id_pemilik_kos)")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">

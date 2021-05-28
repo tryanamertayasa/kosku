@@ -1,13 +1,13 @@
 <?php
 
   session_start();
-
+  $id_user = $_GET["id_user"];
   if(!isset($_SESSION["login"])){
     header("Location: login.php");
     exit;
   }
   require 'functions.php';
-  $koswishlist = query("SELECT * FROM `wishlist`");
+  $koswishlist = query("SELECT w.id_wishlist, p.name, k.title, k.price FROM `wishlist` AS w INNER JOIN `user` AS u USING (`id_user`) INNER JOIN `kos` AS k USING(`id_kos`) INNER JOIN `pemilik_kos` AS p USING (`id_pemilik_kos`) WHERE `id_user` = $id_user");
 ?>
 
 <!DOCTYPE html>

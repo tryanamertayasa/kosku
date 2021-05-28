@@ -12,7 +12,7 @@
                             <div class="row">
                               <div class="col-md-1">
                                 <img
-                                  src="images/dashboard-icon-product-1.png"
+                                  src=""
                                   alt=""
                                 />
                               </div>
