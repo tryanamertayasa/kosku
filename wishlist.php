@@ -55,6 +55,6 @@
     <script>
       AOS.init();
     </script>
-    <script src="/script/navbar-scroll.js"></script>
+    <script src="script/navbar-scroll.js"></script>
   </body>
 </html>

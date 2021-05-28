@@ -62,7 +62,7 @@
         data: {
           activePhoto: 0,
           photos: [
-            <?php $kosimages = query("SELECT `picture` FROM `kos_galleries` WHERE `id_kos`=$id_kos");?>
+            <?php $kosimages = query("SELECT `picture` FROM `kos_galleries` WHERE `id_kos`=$id_kos ORDER BY `id_picture` DESC LIMIT 4 ");?>
             <?php $i = 1; ?>
             <?php foreach ($kosimages as $rowimages) : ?>
             {

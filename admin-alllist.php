@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $userlist = query("SELECT `nama`, `email` FROM `user` UNION SELECT `name`, `email` FROM `pemilik_kos`");
+  $userlist = query("SELECT * FROM alllist");
 ?>
 
 <!DOCTYPE html>

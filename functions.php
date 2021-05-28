@@ -243,7 +243,7 @@
     }
 
     function cari($keyword){
-        $query = "SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`)  WHERE `title` LIKE '%$keyword%' OR `description` LIKE '%$keyword%' GROUP BY `id_kos`";
+        $query = "SELECT `id_kos`, `title`, `price`, `id_location`, MAX(`picture`) AS picture FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`)  WHERE `title` LIKE '%$keyword%' OR `description` LIKE '%$keyword%' GROUP BY `id_kos`";
         return query($query);
     }
 ?>

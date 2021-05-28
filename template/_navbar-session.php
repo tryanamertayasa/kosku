@@ -43,15 +43,15 @@
                 <?php
                     $db = mysqli_connect("localhost", "root", "", "kosku");
                     $id=$_COOKIE['id'];
-                    $result = mysqli_query($db, "SELECT `nama` FROM user WHERE `id_user` = '$id'");
+                    $result = mysqli_query($db, "SELECT `id_user`, `nama` FROM user WHERE `id_user` = '$id'");
                     $row = mysqli_fetch_assoc($result);
                     echo $row["nama"];
                   ?>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-inline-block" href="#">
-                Cart
+              <a class="nav-link d-inline-block" href="wishlist.php?id_user=<?= $row["id_user"]; ?>">
+                Wishlist
               </a>
             </li>
           </ul>

@@ -7,7 +7,7 @@
     exit;
   }
   require 'functions.php';
-  $kosdata = query("SELECT `id_kos`, `title`, `price`, `id_location`, `picture` FROM `kos` INNER JOIN `kos_galleries` USING (`id_kos`) WHERE `price` BETWEEN 500000 AND 800000 GROUP BY `id_kos`");
+  $kosdata = query("SELECT * FROM kos_mahasiswa");
 ?>
 
 <!DOCTYPE html>
